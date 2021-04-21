@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 
 const steps = ['ファイルをアップロード', 'データを変換', 'ダウンロード'];
 
-export default function Checkout() {
+export default function App() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [loadedFilename, onLoadedFilename] = React.useState(null);
