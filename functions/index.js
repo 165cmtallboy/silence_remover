@@ -36,7 +36,7 @@ exports.generateThumbnail = functions.runWith(runtimeOpts).storage.object().onFi
     contentType: contentType,
   };
   await bucket.file(filePath).download({ destination: tempFilePath });
-  functions.logger.log('Image downloaded locally to', tempFilePath);
+  functions.logger.log('Audio downloaded locally to', tempFilePath);
   await spawn(pathToFfmpeg, ['-i', tempFilePath, '-af', `silenceremove=stop_periods=-1:stop_duration=0.1:stop_threshold=${specifiedDB}dB`, outTempFilePath]);
   functions.logger.log('converted:', outTempFilePath);
   const thumbFileName = `out_${fileName}`;
