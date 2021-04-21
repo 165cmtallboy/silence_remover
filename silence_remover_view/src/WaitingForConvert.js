@@ -21,7 +21,7 @@ export default function WaitingForConvert({ filename, callback }) {
             child.getDownloadURL().then((url) => {
                 clearInterval(reload_inverval);
                 window.open(url);
-                callback();
+                callback(url);
             })
         });
 

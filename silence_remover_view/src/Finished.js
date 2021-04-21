@@ -1,18 +1,21 @@
-import { Typography, Grid } from "@material-ui/core";
+import { Typography, Grid, Link } from "@material-ui/core";
 import React from "react";
 
-export default function Finished({ filename, callback }) {
+export default function Finished({ converted }) {
+    console.info(converted);
     return (
         <React.Fragment>
             <Grid container>
                 <Grid item xs={12}>
                     <Typography align="center" variant="h4">
-                        変換が官僚しました。
+                        変換完了！
                     </Typography>
                 </Grid>
                 <Grid item xs={12}>
                     <Typography align="center" variant="h6">
-                        音声がダウンロードされます。
+                        <Link href={converted}>
+                            クリックしてダウンロード
+                        </Link>
                     </Typography>
                 </Grid>
             </Grid>

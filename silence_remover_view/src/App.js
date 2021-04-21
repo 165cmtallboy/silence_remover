@@ -67,6 +67,7 @@ export default function App() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [loadedFilename, onLoadedFilename] = React.useState(null);
+  const [downloadPath, onDownloadPath] = React.useState(null);
 
   React.useEffect(() => {
     // login when component initialized
@@ -97,8 +98,9 @@ export default function App() {
     onLoadedFilename(filepath);
   }
 
-  const onCovnertFinished = () => {
+  const onCovnertFinished = (path) => {
     setActiveStep(2);
+    onDownloadPath(path);
   }
 
   function getStepContent(step) {
@@ -108,7 +110,7 @@ export default function App() {
       case 1:
         return <WaitingForConvert filename={loadedFilename} callback={onCovnertFinished} />;
       case 2:
-        return <Finished />;
+        return <Finished converted={downloadPath} />;
       default:
         throw new Error('Unknown step');
     }
