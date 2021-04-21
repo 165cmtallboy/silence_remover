@@ -71,7 +71,7 @@ export default function AddressForm({ callback }) {
                 </Grid>
                 <Grid item container xs={12} justify="center">
                     <input
-                        accept="audio/*"
+                        accept="*"
                         className={classes.input}
                         onChange={onUploadFileSet}
                         id="contained-button-file"
@@ -85,7 +85,7 @@ export default function AddressForm({ callback }) {
                             color="primary"
                             size="large"
                             startIcon={<AudiotrackIcon />}
-                        >ファイルを選択 </Button>
+                        >パワポまたは音声ファイルを選択 </Button>
                     </label>
                 </Grid>
                 <Grid item xs={12}>

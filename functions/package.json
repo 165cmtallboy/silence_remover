@@ -2,10 +2,12 @@
   "name": "generate-thumbnail-functions-quickstart",
   "description": "Generate Thumbnail Firebase Functions sample",
   "dependencies": {
+    "archiver": "^5.3.0",
     "child-process-promise": "^2.2.1",
     "ffmpeg-static": "^4.3.0",
     "firebase-admin": "^9.5.0",
-    "firebase-functions": "^3.13.2"
+    "firebase-functions": "^3.13.2",
+    "unzipper": "^0.10.11"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
