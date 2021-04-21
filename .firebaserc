@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "dev": "silence-remover-311310",
+    "default": "silence-remover-311310"
+  }
+}
