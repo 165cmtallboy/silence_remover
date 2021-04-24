@@ -51,7 +51,7 @@ exports.generateThumbnail = functions.region('asia-northeast1').runWith(runtimeO
     // there's fucking pptx
 
     // making pptx dir
-    const pptx_unzipped = path.join(os.tmpdir(), 'pptxExtract');
+    const pptx_unzipped = path.join(os.tmpdir(), 'pptxExtract_' + fileName);
     fs.mkdirSync(pptx_unzipped)
     functions.logger.log('UNZIPPING:', outTempFilePath);
     const renamed_pptx = tempFilePath.replace('.pptx', '.zip');
@@ -82,7 +82,7 @@ exports.generateThumbnail = functions.region('asia-northeast1').runWith(runtimeO
     })
 
     functions.logger.log('ROUTINE END.', outTempFilePath);
-    // fs.renameSync(pptx_unzipped, outTempFilePath);
+    await spawn('rm', ['-r', pptx_unzipped]);
   } else {
     await convert(tempFilePath, outTempFilePath, specifiedDB);
   }
@@ -90,13 +90,12 @@ exports.generateThumbnail = functions.region('asia-northeast1').runWith(runtimeO
 
 
   functions.logger.log('converted:', outTempFilePath);
-  const thumbFileName = `out_${fileName}`;
-  const thumbFilePath = path.join(path.dirname(filePath), thumbFileName);
+  const outputFilename = `out_${fileName}`;
+  const writeDestination = path.join(path.dirname(filePath), outputFilename);
 
   await bucket.upload(outTempFilePath, {
-    destination: thumbFilePath,
+    destination: writeDestination,
     metadata: metadata,
   });
-  fs.unlinkSync(tempFilePath);
   return fs.unlinkSync(outTempFilePath);
 });
